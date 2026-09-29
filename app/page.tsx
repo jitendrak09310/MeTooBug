@@ -2,10 +2,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-      <main>
-        <h1>Welcome to MeeTooBug</h1>
-        <p>Got a bug, I know How to fix it. </p>
-      </main>
-  
+    <section>
+      <h1>MeTooBug</h1>
+      <p>A simple platform to report, track and manage software bugs.</p>
+      <div>
+        <a href="/login">Login</a> <a href="/register">Create Account</a>
+      </div>
+    </section>
   );
 }
