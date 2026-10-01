@@ -19,7 +19,7 @@ export const users = pgTable("users", {
     .notNull()
     .unique(),
 
-  password: varchar("password", {
+  passwordHash: varchar("password_hash", {
     length: 255,
   }).notNull(),
 
@@ -29,5 +29,21 @@ export const users = pgTable("users", {
     .notNull()
     .default("USER"),
 
-  createdAt: timestamp("created_At").defaultNow().notNull(),
+  isActive: varchar("is_active", {
+    length: 10,
+  })
+    .notNull()
+    .default("true"),
+
+  // In your db/schema.ts file
+  createdAt: timestamp("created_at", {
+    mode: "date",
+    withTimezone: true, // 👈 Tells PostgreSQL to preserve timezone awareness
+  })
+    .defaultNow()
+    .notNull(),
 });
+
+export type user = typeof users.$inferSelect;
+
+export type NewUser = typeof users.$inferInsert;
